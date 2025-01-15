@@ -2,21 +2,27 @@
   "name": "Paytr Dev Container",
   "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
   "extensions": [
-    "JuanBlanco.solidity", // Solidity extension for smart contract development
-    "eamodio.gitlens", // GitLens extension for Git version control
-    "esbenp.prettier-vscode", // Prettier extension for code formatting
-    "dbaeumer.vscode-eslint", // ESLint extension for linting JavaScript/TypeScript code
-    "ms-vscode.vscode-typescript-tslint-plugin", // TSLint extension for linting TypeScript code
-    "ms-azuretools.vscode-docker", // Docker extension for working with Docker containers
-    "redhat.vscode-yaml" // YAML extension for editing YAML files
+    "JuanBlanco.solidity", // Solidity support
+    "eamodio.gitlens", // GitLens for Git support
+    "esbenp.prettier-vscode", // Prettier for code formatting
+    "dbaeumer.vscode-eslint", // ESLint for linting
+    "ms-vscode.vscode-typescript-tslint-plugin", // TypeScript TSLint plugin
+    "ms-python.python", // Python support
+    "ms-vscode.cpptools", // C++ support
+    "ms-vscode.go", // Go support
+    "ms-azuretools.vscode-docker", // Docker support
+    "redhat.vscode-yaml" // YAML support
   ],
-  "postCreateCommand": "if [ -z \"$YOURKEY\" ]; then echo 'Error: YOURKEY is not set'; exit 1; fi && forge install && forge build && npm install && forge test --fork-url https://sepolia.infura.io/v3/$YOURKEY",
+  "postCreateCommand": "forge install && forge build && npm install && forge test --fork-url https://sepolia.infura.io/v3/YOURKEY",
   "tasks": {
-    "launch": "forge create src/Paytr.sol:Paytr --rpc-url https://sepolia.infura.io/v3/YOURKEY --private-key YOUR_PRIVATE_KEY", // Task to launch the Paytr contract
-    "lint": "npx eslint .", // Task to lint the code using ESLint
-    "format": "npx prettier --write .", // Task to format the code using Prettier
-    "deploy": "forge script src/Paytr.s.sol:PaytrScript --rpc-url https://sepolia.infura.io/v3/YOURKEY --private-key YOUR_PRIVATE_KEY", // Task to deploy the Paytr contract
-    "test": "forge install && forge test --fork-url https://sepolia.infura.io/v3/YOURKEY", // Task to install dependencies and run tests on the Sepolia fork
-    "build": "forge install" // Task to install dependencies and build the project
+    "launch": "forge create src/Paytr.sol:Paytr --rpc-url https://sepolia.infura.io/v3/YOURKEY --private-key YOUR_PRIVATE_KEY",
+    "lint": "npx eslint .",
+    "format": "npx prettier --write .",
+    "deploy": "forge script src/Paytr.s.sol:PaytrScript --rpc-url https://sepolia.infura.io/v3/YOURKEY --private-key YOUR_PRIVATE_KEY",
+    "test": "forge install && forge test --fork-url https://sepolia.infura.io/v3/YOURKEY",
+    "build": "forge install",
+    "integration-test": "forge test --fork-url https://sepolia.infura.io/v3/YOURKEY", // Run integration tests
+    "generate-docs": "npx typedoc --out docs src", // Generate documentation
+    "clean": "forge clean" // Clean up build artifacts
   }
 }
