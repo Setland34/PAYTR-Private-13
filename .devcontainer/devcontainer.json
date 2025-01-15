@@ -6,9 +6,7 @@
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "ms-azuretools.vscode-docker",
-    "redhat.vscode-yaml"
+    "ms-vscode.vscode-typescript-tslint-plugin"
   ],
   "postCreateCommand": "forge install && forge build && npm install && forge test --fork-url https://sepolia.infura.io/v3/YOURKEY",
   "tasks": {
@@ -16,7 +14,7 @@
     "lint": "npx eslint .",
     "format": "npx prettier --write .",
     "deploy": "forge script src/Paytr.s.sol:PaytrScript --rpc-url https://sepolia.infura.io/v3/YOURKEY --private-key YOUR_PRIVATE_KEY",
-    "test": "forge install && forge test --fork-url https://sepolia.infura.io/v3/YOURKEY",
+    "test": "forge test --fork-url https://sepolia.infura.io/v3/YOURKEY",
     "build": "forge install"
   }
 }
