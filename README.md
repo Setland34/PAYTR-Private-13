@@ -4,7 +4,7 @@ You will need to run the tests on a Sepolia fork by using this command:
 `forge test --fork-url https://sepolia.infura.io/v3/YOURKEY` or
 `forge test --fork-url https://eth-sepolia.g.alchemy.com/v2/YOURKEY`
 
-Ensure all tests pass successfully on the Sepolia fork.
+Verify the deployment by ensuring all tests pass successfully on the Sepolia fork.
 
 Update the README with clear deployment instructions.
 
