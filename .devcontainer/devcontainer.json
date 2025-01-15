@@ -2,13 +2,15 @@
   "name": "Paytr Dev Container",
   "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
   "extensions": [
-    "JuanBlanco.solidity",
-    "eamodio.gitlens",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-tslint-plugin"
+    "JuanBlanco.solidity", // Solidity extension for smart contract development
+    "eamodio.gitlens", // GitLens extension for enhanced Git capabilities
+    "esbenp.prettier-vscode", // Prettier extension for code formatting
+    "dbaeumer.vscode-eslint", // ESLint extension for linting JavaScript/TypeScript code
+    "ms-vscode.vscode-typescript-tslint-plugin", // TSLint extension for linting TypeScript code
+    "ms-azuretools.vscode-docker", // Docker extension for managing Docker containers
+    "redhat.vscode-yaml" // YAML extension for editing YAML files
   ],
-  "postCreateCommand": "forge install && forge build && npm install && forge test --fork-url https://sepolia.infura.io/v3/YOURKEY",
+  "postCreateCommand": "if [ -z \"$INFURA_KEY\" ]; then echo 'Error: INFURA_KEY is not set'; exit 1; fi && forge install && forge build && npm install && forge test --fork-url https://sepolia.infura.io/v3/$INFURA_KEY",
   "tasks": {
     "launch": "forge create src/Paytr.sol:Paytr --rpc-url https://sepolia.infura.io/v3/YOURKEY --private-key YOUR_PRIVATE_KEY",
     "lint": "npx eslint .",
